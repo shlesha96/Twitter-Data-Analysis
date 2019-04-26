@@ -1,0 +1,47 @@
+api_key <-'GSXo4pX4VVAuAaYhlr4zAiSSG'
+api_secret <-'SAEvvvMIFBkiBZEANYArkbAFRr7OlBWPzpEbOC4mNCJ3ZG2p2u'
+access_token <-"2525121806-sfG15AUMMXOcsolFzo2hIxidEwENm7pv5DtdDDV"
+access_token_secret <-"U3OXaJfOHZMHMKuMBToxsH4p13BGj2kyzgdl93KyENCRa"
+
+library(twitteR)
+setup_twitter_oauth(api_key, api_secret, access_token, access_token_secret) 
+
+
+# Getting tweets
+tweets <- searchTwitter('#StPatricksDay' ,n=3000,lang = 'en')
+tweets
+tweetsdf <- twListToDF(tweets)
+write.csv(tweetsdf, file='C:\\Users\\dharmik\\Documents\\StPatricksDay.csv', row.names=F)
+head(StPatricksDay)
+q <-sum(StPatricksDay$retweetCount,na.rm=TRUE)
+print(q)
+
+#Trends Locations
+trend <-availableTrendLocations()
+head(trend)
+trend
+
+#Getting Trends
+world <- getTrends(1)
+world
+
+
+Sys.time()
+boston <- getTrends(2367105)
+head(boston)
+
+
+
+ Sys.time()
+
+delhi <- getTrends(20070458)
+head(delhi)
+
+bangalore <- getTrends(2295420)
+head(bangalore)
+
+
+#user timeline
+t <-getUser('narendramodi')
+userTimeline(t,n=10)
+
